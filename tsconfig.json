@@ -27,6 +27,6 @@
       "@/*" :  ["./*"]
     },
 
-    "types": ["vite/client", "vite-plugin-pwa/client"]
+    "types": ["vite/client"]
   }
 }
