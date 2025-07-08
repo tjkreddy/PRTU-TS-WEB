@@ -114,3 +114,11 @@ temp/
 
 # Vite
 .vite/
+
+# PWA
+public/sw.js
+public/workbox-*.js
+public/manifest.webmanifest
+sw.js
+workbox-*.js
+manifest.webmanifest

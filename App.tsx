@@ -9,6 +9,8 @@ import EventsPage from './EventsPage';
 import ResourcesPage from './ResourcesPage';
 import LeadershipPage from './LeadershipPage';
 import ContactPage from './ContactPage';
+import PWAInstall from './PWAInstall';
+import PWAUpdate from './PWAUpdate';
 
 const App = () => {
     const [currentPage, setCurrentPage] = useState<Page>('Home');
@@ -38,6 +40,8 @@ const App = () => {
                 {renderPage()}
             </main>
             <Footer setCurrentPage={setCurrentPage} />
+            <PWAInstall />
+            <PWAUpdate />
         </div>
     );
 };
