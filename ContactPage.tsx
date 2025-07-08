@@ -92,16 +92,16 @@ const ContactPage = () => {
                 </div>
             </div>
             <div className="w-full">
-                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243647.342034937!2d78.2679585461995!3d17.41215112059489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daeaebd2c7%3A0xae93b78392bafbc2!2sHyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1620208986935!5m2!1sen!2sin" 
-                    width="100%" 
+                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888600.950112694!2d76.63685376169961!3d17.86384441282973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3350db9429ed43%3A0x63ef7ba741594059!2sTelangana!5e0!3m2!1sen!2sin!4v1751973652749!5m2!1sen!2sin"
+                  width="100%" 
                     height="450" 
                     style={{ border: 0 }} 
                     allowFullScreen={false} 
                     loading="lazy" 
                     referrerPolicy="no-referrer-when-downgrade"
                     title="PRTU Telangana State Office Location">
-                </iframe>
+
+                  </iframe>
             </div>
         </div>
     );
