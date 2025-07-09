@@ -12,9 +12,7 @@ const Header = ({ currentPage, setCurrentPage }: HeaderProps) => {
         { name: 'Events & Gallery' },
         { name: 'Community' },
         { name: 'Resources' },
-        { name: 'Leadership' },
-        { name: 'About Us' },
-        { name: 'Contact Us' }
+        { name: 'Leadership' }
     ];
     
     const handleNavClick = (page: Page) => {

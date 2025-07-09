@@ -25,9 +25,10 @@ const Footer = ({ setCurrentPage }: FooterProps) => {
                         <ul className="space-y-2 text-sm">
                             <li><a href="#" onClick={(e) => handleNavClick(e, 'Home')} className="text-blue-200 hover:text-white">Home</a></li>
                             <li><a href="#" onClick={(e) => handleNavClick(e, 'News & Updates')} className="text-blue-200 hover:text-white">News & Updates</a></li>
-                            <li><a href="#" onClick={(e) => handleNavClick(e, 'About Us')} className="text-blue-200 hover:text-white">About Us</a></li>
+                            <li><a href="#" onClick={(e) => handleNavClick(e, 'Events & Gallery')} className="text-blue-200 hover:text-white">Events & Gallery</a></li>
+                            <li><a href="#" onClick={(e) => handleNavClick(e, 'Community')} className="text-blue-200 hover:text-white">Community</a></li>
                             <li><a href="#" onClick={(e) => handleNavClick(e, 'Resources')} className="text-blue-200 hover:text-white">Resources</a></li>
-                            <li><a href="#" onClick={(e) => handleNavClick(e, 'Contact Us')} className="text-blue-200 hover:text-white">Contact Us</a></li>
+                            <li><a href="#" onClick={(e) => handleNavClick(e, 'Leadership')} className="text-blue-200 hover:text-white">Leadership</a></li>
                         </ul>
                     </div>
                     <div>
@@ -39,14 +40,18 @@ const Footer = ({ setCurrentPage }: FooterProps) => {
                         </address>
                     </div>
                     <div>
-                        <h3 className="font-bold text-lg mb-4">Development Team</h3>
-                        <a 
-                            href="#" 
-                            onClick={(e) => handleNavClick(e, 'Developers')} 
+                        <h3 className="font-bold text-lg mb-4">Join Community</h3>
+                        <p className="text-sm text-blue-200 mb-3">Connect with fellow teachers and stay updated.</p>
+                        <button 
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setCurrentPage('Community');
+                                window.scrollTo(0, 0);
+                            }} 
                             className="inline-flex items-center bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-orange-600 transition-colors"
                         >
-                            Meet the Team
-                        </a>
+                            Join Discussion
+                        </button>
                     </div>
                 </div>
                 <div className="mt-8 border-t border-blue-800 pt-8 text-center text-sm text-blue-300">
