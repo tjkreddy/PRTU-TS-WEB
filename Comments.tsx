@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { commentAPI, Comment as ApiComment } from './api/commentAPI';
 
 interface Comment {
   id: string;
@@ -22,45 +23,37 @@ const Comments = ({ pageContext = 'general', title = 'Community Discussion' }: C
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [replyText, setReplyText] = useState('');
 
-  // Mock data for demonstration
+  // Load comments from MongoDB Atlas
   useEffect(() => {
-    const mockComments: Comment[] = [
-      {
-        id: '1',
-        author: 'Rajesh Kumar',
-        content: 'Great initiative by PRTU! This will really help teachers across Telangana.',
-        timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
-        likes: 12,
-        isLiked: false,
-        replies: [
-          {
-            id: '1-1',
-            author: 'Priya Sharma',
-            content: 'Absolutely agree! The new policies are very teacher-friendly.',
-            timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000), // 1 hour ago
-            likes: 5,
-            isLiked: true
-          }
-        ]
-      },
-      {
-        id: '2',
-        author: 'Venkat Reddy',
-        content: 'When will the next meeting be scheduled? Looking forward to participating.',
-        timestamp: new Date(Date.now() - 30 * 60 * 1000), // 30 minutes ago
-        likes: 8,
-        isLiked: false
-      },
-      {
-        id: '3',
-        author: 'Lakshmi Devi',
-        content: 'The salary revision news is very encouraging. Thank you PRTU team!',
-        timestamp: new Date(Date.now() - 15 * 60 * 1000), // 15 minutes ago
-        likes: 15,
-        isLiked: true
+    const loadComments = async () => {
+      try {
+        const fetchedComments = await commentAPI.getComments(pageContext);
+        // Convert API response to local Comment interface
+        const localComments: Comment[] = fetchedComments.map(comment => ({
+          id: comment.id,
+          author: comment.author,
+          content: comment.content,
+          timestamp: comment.timestamp,
+          likes: comment.likes,
+          isLiked: comment.isLiked,
+          replies: comment.replies?.map(reply => ({
+            id: reply.id,
+            author: reply.author,
+            content: reply.content,
+            timestamp: reply.timestamp,
+            likes: reply.likes,
+            isLiked: reply.isLiked
+          }))
+        }));
+        setComments(localComments);
+      } catch (error) {
+        console.error('Error loading comments:', error);
+        // Fallback to empty array if API fails
+        setComments([]);
       }
-    ];
-    setComments(mockComments);
+    };
+
+    loadComments();
   }, [pageContext]);
 
   const formatTimeAgo = (timestamp: Date) => {
@@ -73,64 +66,97 @@ const Comments = ({ pageContext = 'general', title = 'Community Discussion' }: C
     return `${Math.floor(diffInMinutes / 1440)}d ago`;
   };
 
-  const handleSubmitComment = () => {
+  const handleSubmitComment = async () => {
     if (!newComment.trim()) return;
     
-    const comment: Comment = {
-      id: Date.now().toString(),
-      author: userInfo.name || 'Anonymous User',
-      content: newComment,
-      timestamp: new Date(),
-      likes: 0,
-      isLiked: false
-    };
-    
-    setComments([comment, ...comments]);
-    setNewComment('');
+    try {
+      const createdComment = await commentAPI.createComment({
+        author: userInfo.name || 'Anonymous User',
+        content: newComment,
+        pageContext: pageContext
+      });
+
+      if (createdComment) {
+        const localComment: Comment = {
+          id: createdComment.id,
+          author: createdComment.author,
+          content: createdComment.content,
+          timestamp: createdComment.timestamp,
+          likes: createdComment.likes,
+          isLiked: createdComment.isLiked
+        };
+        
+        setComments([localComment, ...comments]);
+        setNewComment('');
+      }
+    } catch (error) {
+      console.error('Error creating comment:', error);
+    }
   };
 
-  const handleSubmitReply = (parentId: string) => {
+  const handleSubmitReply = async (parentId: string) => {
     if (!replyText.trim()) return;
     
-    const reply: Comment = {
-      id: `${parentId}-${Date.now()}`,
-      author: userInfo.name || 'Anonymous User',
-      content: replyText,
-      timestamp: new Date(),
-      likes: 0,
-      isLiked: false
-    };
-    
-    setComments(comments.map(comment => 
-      comment.id === parentId 
-        ? { ...comment, replies: [...(comment.replies || []), reply] }
-        : comment
-    ));
-    
-    setReplyText('');
-    setReplyingTo(null);
+    try {
+      const createdReply = await commentAPI.createComment({
+        author: userInfo.name || 'Anonymous User',
+        content: replyText,
+        pageContext: pageContext,
+        parentId: parentId
+      });
+
+      if (createdReply) {
+        const localReply: Comment = {
+          id: createdReply.id,
+          author: createdReply.author,
+          content: createdReply.content,
+          timestamp: createdReply.timestamp,
+          likes: createdReply.likes,
+          isLiked: createdReply.isLiked
+        };
+        
+        setComments(comments.map(comment => 
+          comment.id === parentId 
+            ? { ...comment, replies: [...(comment.replies || []), localReply] }
+            : comment
+        ));
+        
+        setReplyText('');
+        setReplyingTo(null);
+      }
+    } catch (error) {
+      console.error('Error creating reply:', error);
+    }
   };
 
-  const handleLike = (commentId: string, isReply = false, parentId?: string) => {
-    if (isReply && parentId) {
-      setComments(comments.map(comment => 
-        comment.id === parentId 
-          ? {
-              ...comment,
-              replies: comment.replies?.map(reply =>
-                reply.id === commentId
-                  ? { ...reply, likes: reply.isLiked ? reply.likes - 1 : reply.likes + 1, isLiked: !reply.isLiked }
-                  : reply
-              )
-            }
-          : comment
-      ));
-    } else {
-      setComments(comments.map(comment => 
-        comment.id === commentId 
-          ? { ...comment, likes: comment.isLiked ? comment.likes - 1 : comment.likes + 1, isLiked: !comment.isLiked }
-          : comment
-      ));
+  const handleLike = async (commentId: string, isReply = false, parentId?: string) => {
+    try {
+      const updatedComment = await commentAPI.toggleLike(commentId);
+      
+      if (updatedComment) {
+        if (isReply && parentId) {
+          setComments(comments.map(comment => 
+            comment.id === parentId 
+              ? {
+                  ...comment,
+                  replies: comment.replies?.map(reply =>
+                    reply.id === commentId
+                      ? { ...reply, likes: updatedComment.likes, isLiked: updatedComment.isLiked }
+                      : reply
+                  )
+                }
+              : comment
+          ));
+        } else {
+          setComments(comments.map(comment => 
+            comment.id === commentId 
+              ? { ...comment, likes: updatedComment.likes, isLiked: updatedComment.isLiked }
+              : comment
+          ));
+        }
+      }
+    } catch (error) {
+      console.error('Error toggling like:', error);
     }
   };
 
