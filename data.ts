@@ -3,11 +3,11 @@ import type { NewsArticle, GovernmentOrder, Event, Resource, Leader } from './ty
 const samplePdfUrl = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
 
 export const mockNews: NewsArticle[] = [
-  { id: 1, title: 'New Pay Revision Commission (PRC) Announced', excerpt: 'The state government has announced the formation of a new PRC for all government employees...', content: 'Full details about the PRC announcement...', category: 'Announcement', date: '2024-07-28', imageUrl: 'https://via.placeholder.com/400x224/0284c7/FFFFFF?text=PRC+News' },
-  { id: 2, title: 'Guidelines for Teacher Transfers Released', excerpt: 'The education department has released the final guidelines and schedule for the upcoming teacher transfers...', content: 'Full details about the transfer guidelines...', category: 'Transfer', date: '2024-07-25', imageUrl: 'https://via.placeholder.com/400x224/0284c7/FFFFFF?text=Transfers' },
-  { id: 3, title: 'PRTU State Council Meeting Highlights', excerpt: 'Key decisions were made during the state council meeting held in Hyderabad regarding member welfare...', content: 'Full details about the meeting highlights...', category: 'Meeting', date: '2024-07-22', imageUrl: 'https://via.placeholder.com/400x224/0284c7/FFFFFF?text=Meeting' },
-  { id: 4, title: 'G.O. on Health Cards Issued', excerpt: 'The government has issued a new G.O. regarding the implementation of health cards for teachers and their families.', content: 'Detailed information on the new health card scheme.', category: 'G.O.', date: '2024-07-20', imageUrl: 'https://via.placeholder.com/400x224/0284c7/FFFFFF?text=Health+Cards' },
-  { id: 5, title: 'Annual Sports Meet Announced', excerpt: 'PRTU is pleased to announce the annual state-level sports meet for teachers. Registrations are now open.', content: 'Schedule, venue, and registration details for the upcoming sports meet.', category: 'Event', date: '2024-07-18', imageUrl: 'https://via.placeholder.com/400x224/f97316/FFFFFF?text=Sports+Meet' },
+  { id: 1, title: 'New Pay Revision Commission (PRC) Announced', excerpt: 'The state government has announced the formation of a new PRC for all government employees...', content: 'Full details about the PRC announcement...', category: 'Announcement', date: '2024-07-28', imageUrl: 'https://picsum.photos/400/224?random=1' },
+  { id: 2, title: 'Guidelines for Teacher Transfers Released', excerpt: 'The education department has released the final guidelines and schedule for the upcoming teacher transfers...', content: 'Full details about the transfer guidelines...', category: 'Transfer', date: '2024-07-25', imageUrl: 'https://picsum.photos/400/224?random=2' },
+  { id: 3, title: 'PRTU State Council Meeting Highlights', excerpt: 'Key decisions were made during the state council meeting held in Hyderabad regarding member welfare...', content: 'Full details about the meeting highlights...', category: 'Meeting', date: '2024-07-22', imageUrl: 'https://picsum.photos/400/224?random=3' },
+  { id: 4, title: 'G.O. on Health Cards Issued', excerpt: 'The government has issued a new G.O. regarding the implementation of health cards for teachers and their families.', content: 'Detailed information on the new health card scheme.', category: 'G.O.', date: '2024-07-20', imageUrl: 'https://picsum.photos/400/224?random=4' },
+  { id: 5, title: 'Annual Sports Meet Announced', excerpt: 'PRTU is pleased to announce the annual state-level sports meet for teachers. Registrations are now open.', content: 'Schedule, venue, and registration details for the upcoming sports meet.', category: 'Event', date: '2024-07-18', imageUrl: 'https://picsum.photos/400/224?random=5' },
 ];
 
 export const mockGos: GovernmentOrder[] = [
@@ -17,10 +17,10 @@ export const mockGos: GovernmentOrder[] = [
 ];
 
 export const mockEvents: Event[] = [
-    { id: 1, title: 'State Level General Body Meeting', date: '2024-08-15', location: 'Hyderabad', description: 'The annual general body meeting to discuss union progress and future strategy. All members are invited.', imageUrl: 'https://via.placeholder.com/400x300/f97316/FFFFFF?text=General+Body' },
-    { id: 2, title: 'District Leaders Conference', date: '2024-09-05', location: 'Warangal', description: 'A conference for all district-level leaders to align on goals and share best practices.', imageUrl: 'https://via.placeholder.com/400x300/f97316/FFFFFF?text=Conference' },
-    { id: 3, title: 'Teachers Day Celebrations', date: '2024-09-05', location: 'All Districts', description: 'Celebrating the contribution of teachers across the state. Special events will be held in each district.', imageUrl: 'https://via.placeholder.com/400x300/f97316/FFFFFF?text=Teachers+Day' },
-    { id: 4, title: 'Pension Adalat for Retired Teachers', date: '2024-10-10', location: 'Karimnagar', description: 'A special event to address pension-related grievances of our retired members.', imageUrl: 'https://via.placeholder.com/400x300/f97316/FFFFFF?text=Pension+Adalat' },
+    { id: 1, title: 'State Level General Body Meeting', date: '2024-08-15', location: 'Hyderabad', description: 'The annual general body meeting to discuss union progress and future strategy. All members are invited.', imageUrl: 'https://picsum.photos/400/300?random=11' },
+    { id: 2, title: 'District Leaders Conference', date: '2024-09-05', location: 'Warangal', description: 'A conference for all district-level leaders to align on goals and share best practices.', imageUrl: 'https://picsum.photos/400/300?random=12' },
+    { id: 3, title: 'Teachers Day Celebrations', date: '2024-09-05', location: 'All Districts', description: 'Celebrating the contribution of teachers across the state. Special events will be held in each district.', imageUrl: 'https://picsum.photos/400/300?random=13' },
+    { id: 4, title: 'Pension Adalat for Retired Teachers', date: '2024-10-10', location: 'Karimnagar', description: 'A special event to address pension-related grievances of our retired members.', imageUrl: 'https://picsum.photos/400/300?random=14' },
 ];
 
 export const mockResources: Resource[] = [
@@ -33,10 +33,10 @@ export const mockResources: Resource[] = [
 ];
 
 export const mockLeaders: Leader[] = [
-    { id: 1, name: 'S. Mohan Reddy', designation: 'State President', district: 'State Body', contact: 'president@prtuts.org', imageUrl: 'https://via.placeholder.com/128/0284c7/FFFFFF?text=SMR', bio: 'A visionary leader with over 20 years of experience fighting for teacher rights.' },
-    { id: 2, name: 'K. Ramesh Kumar', designation: 'General Secretary', district: 'State Body', contact: 'gensec@prtuts.org', imageUrl: 'https://via.placeholder.com/128/0284c7/FFFFFF?text=KRK', bio: 'Dedicated to strengthening the union from the grassroots level.' },
-    { id: 3, name: 'A. Lakshmi', designation: 'Treasurer', district: 'State Body', contact: 'treasurer@prtuts.org', imageUrl: 'https://via.placeholder.com/128/0284c7/FFFFFF?text=AL', bio: 'Ensuring financial transparency and stability for the union.' },
-    { id: 4, name: 'B. Srinivas', designation: 'President', district: 'Hyderabad', contact: 'hyd.pres@prtuts.org', imageUrl: 'https://via.placeholder.com/128/0284c7/FFFFFF?text=BS', bio: 'Leading the union\'s activities in the bustling capital district.' },
-    { id: 5, name: 'P. Kavitha', designation: 'President', district: 'Warangal', contact: 'wgl.pres@prtuts.org', imageUrl: 'https://via.placeholder.com/128/0284c7/FFFFFF?text=PK', bio: 'A dynamic leader focused on empowering female teachers in the region.' },
-    { id: 6, name: 'V. Anand Rao', designation: 'President', district: 'Karimnagar', contact: 'knr.pres@prtuts.org', imageUrl: 'https://via.placeholder.com/128/0284c7/FFFFFF?text=VAR', bio: 'Working tirelessly to address the unique challenges of teachers in Karimnagar.' },
+    { id: 1, name: 'S. Mohan Reddy', designation: 'State President', district: 'State Body', contact: 'president@prtuts.org', imageUrl: 'https://picsum.photos/128/128?random=21', bio: 'A visionary leader with over 20 years of experience fighting for teacher rights.' },
+    { id: 2, name: 'K. Ramesh Kumar', designation: 'General Secretary', district: 'State Body', contact: 'gensec@prtuts.org', imageUrl: 'https://picsum.photos/128/128?random=22', bio: 'Dedicated to strengthening the union from the grassroots level.' },
+    { id: 3, name: 'A. Lakshmi', designation: 'Treasurer', district: 'State Body', contact: 'treasurer@prtuts.org', imageUrl: 'https://picsum.photos/128/128?random=23', bio: 'Ensuring financial transparency and stability for the union.' },
+    { id: 4, name: 'B. Srinivas', designation: 'President', district: 'Hyderabad', contact: 'hyd.pres@prtuts.org', imageUrl: 'https://picsum.photos/128/128?random=24', bio: 'Leading the union\'s activities in the bustling capital district.' },
+    { id: 5, name: 'P. Kavitha', designation: 'President', district: 'Warangal', contact: 'wgl.pres@prtuts.org', imageUrl: 'https://picsum.photos/128/128?random=25', bio: 'A dynamic leader focused on empowering female teachers in the region.' },
+    { id: 6, name: 'V. Anand Rao', designation: 'President', district: 'Karimnagar', contact: 'knr.pres@prtuts.org', imageUrl: 'https://picsum.photos/128/128?random=26', bio: 'Working tirelessly to address the unique challenges of teachers in Karimnagar.' },
 ];
