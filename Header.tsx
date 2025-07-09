@@ -10,6 +10,7 @@ const Header = ({ currentPage, setCurrentPage }: HeaderProps) => {
         { name: 'Home' },
         { name: 'News & Updates' },
         { name: 'Events & Gallery' },
+        { name: 'Community' },
         { name: 'Resources' },
         { name: 'Leadership' },
         { name: 'Contact Us' }

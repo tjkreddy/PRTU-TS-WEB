@@ -1,4 +1,4 @@
-export type Page = 'Home' | 'News & Updates' | 'Events & Gallery' | 'Resources' | 'Leadership' | 'Contact Us';
+export type Page = 'Home' | 'News & Updates' | 'Events & Gallery' | 'Resources' | 'Leadership' | 'Contact Us' | 'Community';
 
 export interface NewsArticle {
   id: number;
