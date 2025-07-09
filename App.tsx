@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import type { Page } from './types';
 
 import Header from './Header';
@@ -13,6 +13,7 @@ import AboutPage from './AboutPage';
 import DevelopersPage from './DevelopersPage';
 import PWAInstall from './PWAInstall';
 import PWAUpdate from './PWAUpdate';
+import BottomNavigation from './BottomNavigation';
 
 const App = () => {
     const [currentPage, setCurrentPage] = useState<Page>('Home');
@@ -42,10 +43,11 @@ const App = () => {
     return (
         <div className="bg-gray-50 font-sans antialiased">
             <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
-            <main>
+            <main className="pb-16 md:pb-0">
                 {renderPage()}
             </main>
             <Footer setCurrentPage={setCurrentPage} />
+            <BottomNavigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
             <PWAInstall />
             <PWAUpdate />
         </div>
