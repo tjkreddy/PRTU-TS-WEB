@@ -13,6 +13,7 @@ const Header = ({ currentPage, setCurrentPage }: HeaderProps) => {
         { name: 'Community' },
         { name: 'Resources' },
         { name: 'Leadership' },
+        { name: 'About Us' },
         { name: 'Contact Us' }
     ];
     
