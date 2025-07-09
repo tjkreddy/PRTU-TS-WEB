@@ -15,7 +15,7 @@ const Footer = ({ setCurrentPage }: FooterProps) => {
     return (
         <footer className="bg-blue-900 text-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                     <div>
                         <h3 className="font-bold text-lg mb-4">PRTU Telangana</h3>
                         <p className="text-sm text-blue-200">Progressive Recognized Teachers Union, committed to the welfare and rights of teachers across Telangana.</p>
@@ -27,6 +27,7 @@ const Footer = ({ setCurrentPage }: FooterProps) => {
                             <li><a href="#" onClick={(e) => handleNavClick(e, 'News & Updates')} className="text-blue-200 hover:text-white">News & Updates</a></li>
                             <li><a href="#" onClick={(e) => handleNavClick(e, 'Events & Gallery')} className="text-blue-200 hover:text-white">Events & Gallery</a></li>
                             <li><a href="#" onClick={(e) => handleNavClick(e, 'Community')} className="text-blue-200 hover:text-white">Community</a></li>
+                            <li><a href="#" onClick={(e) => handleNavClick(e, 'About Us')} className="text-blue-200 hover:text-white">About Us</a></li>
                             <li><a href="#" onClick={(e) => handleNavClick(e, 'Resources')} className="text-blue-200 hover:text-white">Resources</a></li>
                             <li><a href="#" onClick={(e) => handleNavClick(e, 'Leadership')} className="text-blue-200 hover:text-white">Leadership</a></li>
                         </ul>
@@ -48,10 +49,21 @@ const Footer = ({ setCurrentPage }: FooterProps) => {
                                 setCurrentPage('Community');
                                 window.scrollTo(0, 0);
                             }} 
-                            className="inline-flex items-center bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-orange-600 transition-colors"
+                            className="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-blue-700 transition-colors"
                         >
                             Join Discussion
                         </button>
+                    </div>
+                    <div>
+                        <h3 className="font-bold text-lg mb-4">Development Team</h3>
+                        <p className="text-sm text-blue-200 mb-3">Meet the developers behind this platform.</p>
+                        <a 
+                            href="#" 
+                            onClick={(e) => handleNavClick(e, 'Developers')} 
+                            className="inline-flex items-center bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-orange-600 transition-colors"
+                        >
+                            Meet the Team
+                        </a>
                     </div>
                 </div>
                 <div className="mt-8 border-t border-blue-800 pt-8 text-center text-sm text-blue-300">

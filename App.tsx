@@ -9,6 +9,8 @@ import EventsPage from './EventsPage';
 import ResourcesPage from './ResourcesPage';
 import LeadershipPage from './LeadershipPage';
 import CommunityPage from './CommunityPage';
+import AboutPage from './AboutPage';
+import DevelopersPage from './DevelopersPage';
 import PWAInstall from './PWAInstall';
 import PWAUpdate from './PWAUpdate';
 import BottomNavigation from './BottomNavigation';
@@ -28,6 +30,10 @@ const App = () => {
                 return <ResourcesPage />;
             case 'Leadership':
                 return <LeadershipPage />;
+            case 'About Us':
+                return <AboutPage />;
+            case 'Developers':
+                return <DevelopersPage />;
             case 'Home':
             default:
                 return <HomePage />;
