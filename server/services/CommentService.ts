@@ -1,6 +1,6 @@
 import { Collection, ObjectId } from 'mongodb';
-import DatabaseConnection from '../database';
-import { Comment, CommentCreateRequest, CommentUpdateRequest, CommentResponse } from '../models/Comment';
+import DatabaseConnection from '../database.js';
+import { Comment, CommentCreateRequest, CommentUpdateRequest, CommentResponse } from '../models/Comment.js';
 
 export class CommentService {
   private collection: Collection<Comment>;
@@ -11,35 +11,42 @@ export class CommentService {
   }
 
   async createComment(commentData: CommentCreateRequest, userId: string = 'anonymous'): Promise<CommentResponse> {
-    const comment: Comment = {
-      id: new ObjectId().toString(),
-      author: commentData.author,
-      content: commentData.content,
-      timestamp: new Date(),
-      pageContext: commentData.pageContext,
-      likes: 0,
-      likedBy: [],
-      parentId: commentData.parentId,
-      isReply: !!commentData.parentId,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    };
+    try {
+      const comment: Comment = {
+        id: new ObjectId().toString(),
+        author: commentData.author,
+        content: commentData.content,
+        timestamp: new Date(),
+        pageContext: commentData.pageContext,
+        likes: 0,
+        likedBy: [],
+        parentId: commentData.parentId,
+        isReply: !!commentData.parentId,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      };
 
-    const result = await this.collection.insertOne(comment);
-    
-    return {
-      id: comment.id,
-      author: comment.author,
-      content: comment.content,
-      timestamp: comment.timestamp,
-      pageContext: comment.pageContext,
-      likes: comment.likes,
-      isLiked: false,
-      parentId: comment.parentId,
-      isReply: comment.isReply,
-      createdAt: comment.createdAt,
-      updatedAt: comment.updatedAt
-    };
+      console.log(`📝 Creating comment for user: ${userId}, author: ${commentData.author}`);
+      const result = await this.collection.insertOne(comment);
+      console.log(`✅ Comment created with ID: ${comment.id}`);
+      
+      return {
+        id: comment.id,
+        author: comment.author,
+        content: comment.content,
+        timestamp: comment.timestamp,
+        pageContext: comment.pageContext,
+        likes: comment.likes,
+        isLiked: false,
+        parentId: comment.parentId,
+        isReply: comment.isReply,
+        createdAt: comment.createdAt,
+        updatedAt: comment.updatedAt
+      };
+    } catch (error) {
+      console.error('❌ Error creating comment:', error);
+      throw error;
+    }
   }
 
   async getCommentsByPageContext(pageContext: string, userId: string = 'anonymous'): Promise<CommentResponse[]> {

@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import DatabaseConnection from './database';
-import commentRoutes from './routes/comments';
+import DatabaseConnection from './database.js';
+import commentRoutes from './routes/comments.js';
 
 // Load environment variables
 dotenv.config();

@@ -24,6 +24,21 @@ const Comments = ({ pageContext = 'general', title = 'Community Discussion' }: C
   const [replyText, setReplyText] = useState('');
   const [serverStatus, setServerStatus] = useState<'checking' | 'online' | 'offline'>('checking');
 
+  // Load user info from localStorage on component mount
+  useEffect(() => {
+    const savedUserInfo = localStorage.getItem('prtu-user-info');
+    if (savedUserInfo) {
+      try {
+        const parsedUserInfo = JSON.parse(savedUserInfo);
+        setUserInfo(parsedUserInfo);
+        console.log('Loaded user info from localStorage:', parsedUserInfo);
+      } catch (error) {
+        console.error('Error parsing saved user info:', error);
+        localStorage.removeItem('prtu-user-info');
+      }
+    }
+  }, []);
+
   // Check server status
   useEffect(() => {
     const checkServerStatus = async () => {
@@ -199,8 +214,12 @@ const Comments = ({ pageContext = 'general', title = 'Community Discussion' }: C
 
   const handleLoginPrompt = () => {
     const name = prompt('Enter your name to continue:');
-    if (name) {
-      setUserInfo({ name, isLoggedIn: true });
+    if (name && name.trim()) {
+      const newUserInfo = { name: name.trim(), isLoggedIn: true };
+      setUserInfo(newUserInfo);
+      // Save to localStorage for persistence
+      localStorage.setItem('prtu-user-info', JSON.stringify(newUserInfo));
+      console.log('User info saved to localStorage:', newUserInfo);
     }
   };
 
@@ -264,7 +283,11 @@ const Comments = ({ pageContext = 'general', title = 'Community Discussion' }: C
             />
             <div className="flex justify-between items-center">
               <button
-                onClick={() => setUserInfo({ name: '', isLoggedIn: false })}
+                onClick={() => {
+                  setUserInfo({ name: '', isLoggedIn: false });
+                  localStorage.removeItem('prtu-user-info');
+                  console.log('User signed out and info cleared from localStorage');
+                }}
                 className="text-sm text-gray-500 hover:text-gray-700"
               >
                 Sign out

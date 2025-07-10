@@ -17,19 +17,36 @@ class DatabaseConnection {
   public async connect(): Promise<void> {
     try {
       if (!this.client) {
-        const uri = process.env.MONGODB_URI || '';
+        const uri = process.env.MONGODB_URI;
         if (!uri) {
           throw new Error('MongoDB URI is not defined in environment variables');
         }
 
+        console.log('Connecting to MongoDB Atlas...');
         this.client = new MongoClient(uri);
         await this.client.connect();
+        
+        // Ping the deployment to verify connection
+        await this.client.db("admin").command({ ping: 1 });
+        
         this.db = this.client.db(process.env.DB_NAME || 'prtu-community');
         
-        console.log('Connected to MongoDB Atlas');
+        console.log('✅ Connected to MongoDB Atlas successfully!');
+        console.log(`📊 Using database: ${this.db.databaseName}`);
+        
+        // Ensure the comments collection exists
+        const collections = await this.db.listCollections().toArray();
+        const commentsCollectionExists = collections.some(col => col.name === 'comments');
+        
+        if (!commentsCollectionExists) {
+          await this.db.createCollection('comments');
+          console.log('📝 Created comments collection');
+        } else {
+          console.log('📝 Comments collection already exists');
+        }
       }
     } catch (error) {
-      console.error('MongoDB connection error:', error);
+      console.error('❌ MongoDB connection error:', error);
       throw error;
     }
   }
