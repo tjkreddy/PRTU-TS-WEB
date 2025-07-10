@@ -22,6 +22,28 @@ const Comments = ({ pageContext = 'general', title = 'Community Discussion' }: C
   const [userInfo, setUserInfo] = useState({ name: '', isLoggedIn: false });
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [replyText, setReplyText] = useState('');
+  const [serverStatus, setServerStatus] = useState<'checking' | 'online' | 'offline'>('checking');
+
+  // Check server status
+  useEffect(() => {
+    const checkServerStatus = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/health');
+        if (response.ok) {
+          setServerStatus('online');
+          console.log('Server is online');
+        } else {
+          setServerStatus('offline');
+          console.log('Server responded with error');
+        }
+      } catch (error) {
+        setServerStatus('offline');
+        console.error('Server is offline:', error);
+      }
+    };
+
+    checkServerStatus();
+  }, []);
 
   // Load comments from MongoDB Atlas
   useEffect(() => {
@@ -67,14 +89,24 @@ const Comments = ({ pageContext = 'general', title = 'Community Discussion' }: C
   };
 
   const handleSubmitComment = async () => {
-    if (!newComment.trim()) return;
+    console.log('handleSubmitComment called');
+    console.log('newComment:', newComment);
+    console.log('userInfo:', userInfo);
+    
+    if (!newComment.trim()) {
+      console.log('Comment is empty, returning');
+      return;
+    }
     
     try {
+      console.log('Sending comment to API...');
       const createdComment = await commentAPI.createComment({
         author: userInfo.name || 'Anonymous User',
         content: newComment,
         pageContext: pageContext
       });
+
+      console.log('API response:', createdComment);
 
       if (createdComment) {
         const localComment: Comment = {
@@ -86,11 +118,16 @@ const Comments = ({ pageContext = 'general', title = 'Community Discussion' }: C
           isLiked: createdComment.isLiked
         };
         
+        console.log('Adding comment to local state:', localComment);
         setComments([localComment, ...comments]);
         setNewComment('');
+        console.log('Comment posted successfully');
+      } else {
+        console.error('No comment returned from API');
       }
     } catch (error) {
       console.error('Error creating comment:', error);
+      alert('Failed to post comment. Please check if the server is running.');
     }
   };
 
@@ -171,13 +208,42 @@ const Comments = ({ pageContext = 'general', title = 'Community Discussion' }: C
     <div className="bg-white rounded-lg shadow-lg p-6">
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-xl font-bold text-gray-900">{title}</h3>
-        <div className="flex items-center space-x-2 text-sm text-gray-500">
-          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clipRule="evenodd" />
-          </svg>
-          <span>{comments.length} comments</span>
+        <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 text-sm text-gray-500">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clipRule="evenodd" />
+            </svg>
+            <span>{comments.length} comments</span>
+          </div>
+          <div className="flex items-center space-x-1 text-xs">
+            <div className={`w-2 h-2 rounded-full ${
+              serverStatus === 'online' ? 'bg-green-500' : 
+              serverStatus === 'offline' ? 'bg-red-500' : 'bg-yellow-500'
+            }`}></div>
+            <span className={`${
+              serverStatus === 'online' ? 'text-green-600' : 
+              serverStatus === 'offline' ? 'text-red-600' : 'text-yellow-600'
+            }`}>
+              {serverStatus === 'online' ? 'Online' : 
+               serverStatus === 'offline' ? 'Offline' : 'Checking...'}
+            </span>
+          </div>
         </div>
       </div>
+
+      {/* Server Status Warning */}
+      {serverStatus === 'offline' && (
+        <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+          <div className="flex items-center">
+            <svg className="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            </svg>
+            <span className="text-red-700 text-sm">
+              Server is offline. Please start the backend server to post comments.
+            </span>
+          </div>
+        </div>
+      )}
 
       {/* Comment Input */}
       <div className="mb-6">
@@ -205,7 +271,7 @@ const Comments = ({ pageContext = 'general', title = 'Community Discussion' }: C
               </button>
               <button
                 onClick={handleSubmitComment}
-                disabled={!newComment.trim()}
+                disabled={!newComment.trim() || serverStatus === 'offline'}
                 className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
               >
                 Post Comment
