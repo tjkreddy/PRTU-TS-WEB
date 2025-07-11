@@ -1,15 +1,16 @@
-import React, { useState, useMemo } from 'react';
-import { mockNews } from './data';
+import { useState, useMemo } from 'react';
 import type { NewsArticle } from './types';
+import { useAppContext } from './AppContext';
 
 const NewsPage = () => {
+    const { state } = useAppContext();
     const categories: NewsArticle['category'][] = ['Announcement', 'G.O.', 'Event', 'Transfer', 'Meeting'];
     const [filter, setFilter] = useState<NewsArticle['category'] | 'All'>('All');
 
     const filteredNews = useMemo(() => {
-        if (filter === 'All') return mockNews;
-        return mockNews.filter(article => article.category === filter);
-    }, [filter]);
+        if (filter === 'All') return state.news;
+        return state.news.filter((article: NewsArticle) => article.category === filter);
+    }, [filter, state.news]);
 
     return (
         <div className="bg-white py-12 md:py-20">

@@ -1,8 +1,9 @@
-import React from 'react';
-import { mockEvents } from './data';
 import { CalendarIcon, MapPinIcon } from './Icons';
+import { useAppContext } from './AppContext';
 
 const EventsPage = () => {
+    const { state } = useAppContext();
+    
     return (
         <div className="bg-gray-50 py-12 md:py-20">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -12,7 +13,7 @@ const EventsPage = () => {
                 </div>
 
                 <div className="grid gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-2">
-                    {mockEvents.map(event => (
+                    {state.events.map(event => (
                          <div key={event.id} className="bg-white rounded-lg shadow-xl overflow-hidden group flex flex-col sm:flex-row">
                             <img className="h-64 w-full sm:w-1/3 object-cover" src={event.imageUrl} alt={event.title} />
                             <div className="p-6 flex flex-col flex-grow">

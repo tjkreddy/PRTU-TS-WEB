@@ -1,10 +1,10 @@
-import React from 'react';
-import { mockResources } from './data';
 import type { Resource } from './types';
 import { DownloadIcon } from './Icons';
+import { useAppContext } from './AppContext';
 
 const ResourcesPage = () => {
-    const categories = Array.from(new Set(mockResources.map(r => r.category)));
+    const { state } = useAppContext();
+    const categories = Array.from(new Set(state.resources.map(r => r.category)));
 
     return (
          <div className="bg-white py-12 md:py-20">
@@ -19,7 +19,7 @@ const ResourcesPage = () => {
                         <div key={category}>
                             <h2 className="text-2xl font-bold text-blue-800 border-b-2 border-orange-400 pb-2 mb-6">{category}</h2>
                              <div className="divide-y divide-gray-200">
-                                {mockResources.filter(r => r.category === category).map(resource => (
+                                {state.resources.filter((r: Resource) => r.category === category).map((resource: Resource) => (
                                     <div key={resource.id} className="flex items-center justify-between py-4">
                                         <div>
                                             <h3 className="text-md font-semibold text-gray-800">{resource.title}</h3>

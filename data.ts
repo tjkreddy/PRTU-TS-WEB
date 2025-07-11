@@ -1,6 +1,16 @@
-import type { NewsArticle, GovernmentOrder, Event, Resource, Leader } from './types';
+import type { NewsArticle, GovernmentOrder, Event, Resource, Leader, AdminUser } from './types';
 
 const samplePdfUrl = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+
+// Admin users
+export const mockAdmins: AdminUser[] = [
+  { id: 1, username: 'admin', name: 'Admin User', role: 'admin' },
+  { id: 2, username: 'editor', name: 'Content Editor', role: 'editor' }
+];
+
+// Admin passwords (in a real app, these would be securely stored on the server)
+export const ADMIN_PASSWORD = 'prtu@admin123';
+export const EDITOR_PASSWORD = 'prtu@editor123';
 
 export const mockNews: NewsArticle[] = [
   { id: 1, title: 'New Pay Revision Commission (PRC) Announced', excerpt: 'The state government has announced the formation of a new PRC for all government employees...', content: 'Full details about the PRC announcement...', category: 'Announcement', date: '2024-07-28', imageUrl: 'https://picsum.photos/400/224?random=1' },

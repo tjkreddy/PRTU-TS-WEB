@@ -1,5 +1,19 @@
-export type Page = 'Home' | 'News & Updates' | 'Events & Gallery' | 'Resources' | 'Leadership' | 'Community' | 'About Us' | 'Developers';
+export type Page = 'Home' | 'News & Updates' | 'Events & Gallery' | 'Resources' | 'Leadership' | 'Community' | 'About Us' | 'Developers' | 'Admin';
 
+// Admin-specific types
+export interface AdminCredentials {
+  username: string;
+  password: string;
+}
+
+export interface AdminUser {
+  id: number;
+  username: string;
+  name: string;
+  role: 'admin' | 'editor';
+}
+
+// Existing types
 export interface NewsArticle {
   id: number;
   title: string;

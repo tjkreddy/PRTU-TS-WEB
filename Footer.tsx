@@ -57,13 +57,22 @@ const Footer = ({ setCurrentPage }: FooterProps) => {
                     <div>
                         <h3 className="font-bold text-lg mb-4">Development Team</h3>
                         <p className="text-sm text-blue-200 mb-3">Meet the developers behind this platform.</p>
-                        <a 
-                            href="#" 
-                            onClick={(e) => handleNavClick(e, 'Developers')} 
-                            className="inline-flex items-center bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-orange-600 transition-colors"
-                        >
-                            Meet the Team
-                        </a>
+                        <div className="flex flex-col space-y-2">
+                            <a 
+                                href="#" 
+                                onClick={(e) => handleNavClick(e, 'Developers')} 
+                                className="inline-flex items-center bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-orange-600 transition-colors"
+                            >
+                                Meet the Team
+                            </a>
+                            <a 
+                                href="#" 
+                                onClick={(e) => handleNavClick(e, 'Admin')} 
+                                className="inline-flex items-center bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-blue-800 transition-colors"
+                            >
+                                Admin Portal
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div className="mt-8 border-t border-blue-800 pt-8 text-center text-sm text-blue-300">
