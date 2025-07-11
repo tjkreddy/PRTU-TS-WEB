@@ -105,7 +105,7 @@ const AdminLogin = ({ setCurrentPage, setIsLoggedIn, setCurrentAdmin }: LoginPro
         </form>
         
         <div className="mt-6 text-center text-sm text-gray-500">
-          <p>For demo: username "admin" with password "prtu@admin123"</p>
+          <p>Use username "admin@prtu.org" with password "admin123"</p>
         </div>
       </div>
     </div>

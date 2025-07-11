@@ -52,6 +52,7 @@ const Header = ({ currentPage, setCurrentPage }: HeaderProps) => {
                     {/* Desktop Member Portal */}
                     <div className="hidden md:block">
                         <button 
+                          onClick={() => handleNavClick('Member Portal')}
                           className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-orange-600 transition-colors shadow"
                         >
                             Member Portal

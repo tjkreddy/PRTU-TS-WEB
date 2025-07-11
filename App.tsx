@@ -11,6 +11,7 @@ import LeadershipPage from './LeadershipPage';
 import CommunityPage from './CommunityPage';
 import AboutPage from './AboutPage';
 import DevelopersPage from './DevelopersPage';
+import MemberPortal from './MemberPortal';
 import PWAInstall from './PWAInstall';
 import PWAUpdate from './PWAUpdate';
 import BottomNavigation from './BottomNavigation';
@@ -46,6 +47,8 @@ const App = () => {
                 return <AboutPage />;
             case 'Developers':
                 return <DevelopersPage />;
+            case 'Member Portal':
+                return <MemberPortal />;
             case 'Home':
             default:
                 return <HomePage />;

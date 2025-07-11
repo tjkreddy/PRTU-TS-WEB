@@ -63,6 +63,7 @@ const BottomNavigation = ({ currentPage, setCurrentPage }: BottomNavigationProps
             {/* Mobile Floating Action Button for Member Portal */}
             <div className="md:hidden fixed bottom-20 right-4 z-40">
                 <button 
+                    onClick={() => handleNavClick('Member Portal')}
                     className="bg-orange-500 hover:bg-orange-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
                     title="Member Portal"
                     aria-label="Open Member Portal"

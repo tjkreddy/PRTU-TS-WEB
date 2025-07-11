@@ -30,6 +30,7 @@ const Footer = ({ setCurrentPage }: FooterProps) => {
                             <li><a href="#" onClick={(e) => handleNavClick(e, 'About Us')} className="text-blue-200 hover:text-white">About Us</a></li>
                             <li><a href="#" onClick={(e) => handleNavClick(e, 'Resources')} className="text-blue-200 hover:text-white">Resources</a></li>
                             <li><a href="#" onClick={(e) => handleNavClick(e, 'Leadership')} className="text-blue-200 hover:text-white">Leadership</a></li>
+                            <li><a href="#" onClick={(e) => handleNavClick(e, 'Member Portal')} className="text-blue-200 hover:text-white">Member Portal</a></li>
                         </ul>
                     </div>
                     <div>

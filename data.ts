@@ -4,12 +4,12 @@ const samplePdfUrl = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/
 
 // Admin users
 export const mockAdmins: AdminUser[] = [
-  { id: 1, username: 'admin', name: 'Admin User', role: 'admin' },
+  { id: 1, username: 'admin@prtu.org', name: 'PRTU Administrator', role: 'admin' },
   { id: 2, username: 'editor', name: 'Content Editor', role: 'editor' }
 ];
 
 // Admin passwords (in a real app, these would be securely stored on the server)
-export const ADMIN_PASSWORD = 'prtu@admin123';
+export const ADMIN_PASSWORD = 'admin123';
 export const EDITOR_PASSWORD = 'prtu@editor123';
 
 export const mockNews: NewsArticle[] = [
