@@ -28,7 +28,7 @@ const Header = ({ currentPage, setCurrentPage }: HeaderProps) => {
                     <div className="flex-shrink-0">
                         <button onClick={() => handleNavClick('Home')} className="flex items-center space-x-2">
                              <span className="w-8 h-8 md:w-10 md:h-10 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg md:text-xl">P</span>
-                             <span className="font-bold text-lg md:text-xl text-blue-900">PRTU Telangana</span>
+                             <span className="font-bold text-lg md:text-xl text-blue-900">PRTU TS</span>
                         </button>
                     </div>
                     
@@ -51,11 +51,8 @@ const Header = ({ currentPage, setCurrentPage }: HeaderProps) => {
                     
                     {/* Desktop Member Portal */}
                     <div className="hidden md:block">
-                        <button 
-                          onClick={() => handleNavClick('Member Portal')}
-                          className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-orange-600 transition-colors shadow"
-                        >
-                            Member Portal
+                        <button className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-orange-600 transition-colors shadow">
+                            Member Verification
                         </button>
                     </div>
                     
