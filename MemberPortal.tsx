@@ -3,7 +3,7 @@ import { memberService, supabase } from './supabaseClient';
 import type { Member } from './types';
 
 const MemberPortal = () => {
-    const [treasuryId, setTreasuryId] = useState('');
+    const [searchValue, setSearchValue] = useState('');
     const [member, setMember] = useState<Member | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -13,8 +13,8 @@ const MemberPortal = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!treasuryId.trim()) {
-            setError('Please enter a Treasury ID');
+        if (!searchValue.trim()) {
+            setError('Please enter a Treasury ID or Phone Number');
             return;
         }
 
@@ -24,12 +24,12 @@ const MemberPortal = () => {
         setSearched(false);
 
         try {
-            const memberData = await memberService.findMemberByTreasuryId(treasuryId.trim());
+            const memberData = await memberService.findMemberByTreasuryIdOrPhone(searchValue.trim());
             
             if (memberData) {
                 setMember(memberData);
             } else {
-                setError('Treasury ID not found in our records. Please check your ID or contact admin.');
+                setError('Treasury ID or Phone Number not found in our records. Please check your input or contact admin.');
             }
             setSearched(true);
         } catch (err) {
@@ -41,7 +41,7 @@ const MemberPortal = () => {
     };
 
     const handleReset = () => {
-        setTreasuryId('');
+        setSearchValue('');
         setMember(null);
         setError('');
         setSearched(false);
@@ -62,7 +62,7 @@ const MemberPortal = () => {
                     </h1>
                     <div className="w-24 h-1 bg-orange-500 mx-auto mb-6"></div>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                        Verify your membership by entering your Treasury ID to view your details and confirm your membership status.
+                        Verify your membership by entering your Treasury ID or Phone Number to view your details and confirm your membership status.
                     </p>
                 </div>
 
@@ -96,15 +96,15 @@ const MemberPortal = () => {
                         
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div>
-                                <label htmlFor="treasuryId" className="block text-sm font-medium text-gray-700 mb-2">
-                                    Treasury ID
+                                <label htmlFor="searchValue" className="block text-sm font-medium text-gray-700 mb-2">
+                                    Treasury ID or Phone Number
                                 </label>
                                 <input
                                     type="text"
-                                    id="treasuryId"
-                                    value={treasuryId}
-                                    onChange={(e) => setTreasuryId(e.target.value)}
-                                    placeholder="Enter your Treasury ID"
+                                    id="searchValue"
+                                    value={searchValue}
+                                    onChange={(e) => setSearchValue(e.target.value)}
+                                    placeholder="Enter your Treasury ID or Phone Number"
                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                                     disabled={loading}
                                 />
@@ -166,6 +166,9 @@ const MemberPortal = () => {
                                     <div className="ml-6">
                                         <h3 className="text-2xl font-bold text-white">{member.teacher_name}</h3>
                                         <p className="text-blue-200">Treasury ID: {member.treasury_id}</p>
+                                        {member.phone && (
+                                            <p className="text-blue-200">Phone: {member.phone}</p>
+                                        )}
                                         <div className="mt-2">
                                             <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
                                                 ✓ Verified Member
@@ -262,11 +265,11 @@ const MemberPortal = () => {
                             About Member Verification
                         </h3>
                         <div className="text-blue-800 space-y-2">
-                            <p>• Enter your Treasury ID to verify your membership with PRTU Telangana.</p>
+                            <p>• Enter your Treasury ID or Phone Number to verify your membership with PRTU Telangana.</p>
                             <p>• This portal confirms your membership status and displays your registered details.</p>
                             <p>• Your information includes personal details, nominees, and institutional affiliation.</p>
                             <p>• If you encounter any issues or need to update your information, please contact the union office.</p>
-                            <p>• Keep your Treasury ID confidential and use it only for official verification purposes.</p>
+                            <p>• Keep your Treasury ID and Phone Number confidential and use them only for official verification purposes.</p>
                         </div>
                     </div>
                 </div>

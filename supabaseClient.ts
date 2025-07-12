@@ -43,6 +43,44 @@ export const memberService = {
     }
   },
 
+  // Find member by Treasury ID or Phone Number
+  async findMemberByTreasuryIdOrPhone(searchValue: string) {
+    try {
+      if (!supabase) {
+        console.error('Supabase not configured');
+        return null;
+      }
+
+      // First try to find by treasury_id
+      const { data: treasuryData, error: treasuryError } = await supabase
+        .from('members')
+        .select('*')
+        .eq('treasury_id', searchValue)
+        .single();
+
+      if (treasuryData && !treasuryError) {
+        return treasuryData;
+      }
+
+      // If not found by treasury_id, try by phone number
+      const { data: phoneData, error: phoneError } = await supabase
+        .from('members')
+        .select('*')
+        .eq('phone', searchValue)
+        .single();
+
+      if (phoneData && !phoneError) {
+        return phoneData;
+      }
+
+      // If still not found, return null
+      return null;
+    } catch (error) {
+      console.error('Error in findMemberByTreasuryIdOrPhone:', error);
+      return null;
+    }
+  },
+
   // Get all members (for admin purposes)
   async getAllMembers() {
     try {
