@@ -43,7 +43,7 @@ const Comments = ({ pageContext = 'general', title = 'Community Discussion' }: C
   useEffect(() => {
     const checkServerStatus = async () => {
       try {
-        const response = await fetch('http://localhost:5000/health');
+        const response = await fetch('http://localhost:8080/health');
         if (response.ok) {
           setServerStatus('online');
           console.log('Server is online');

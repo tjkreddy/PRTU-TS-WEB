@@ -63,27 +63,12 @@ const BottomNavigation = ({ currentPage, setCurrentPage }: BottomNavigationProps
             {/* Mobile Floating Action Button for Member Portal */}
             <div className="md:hidden fixed bottom-20 right-4 z-40">
                 <button 
-                    onClick={() => handleNavClick('Member Portal')}
                     className="bg-orange-500 hover:bg-orange-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
                     title="Member Portal"
                     aria-label="Open Member Portal"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                </button>
-            </div>
-
-            {/* Mobile Floating Action Button for Admin Portal - positioned to the left of Member Portal */}
-            <div className="md:hidden fixed bottom-20 right-20 z-40">
-                <button 
-                    onClick={() => handleNavClick('Admin')}
-                    className="bg-blue-700 hover:bg-blue-800 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-                    title="Admin Portal"
-                    aria-label="Open Admin Portal"
-                >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </button>
             </div>
@@ -104,11 +89,8 @@ const BottomNavigation = ({ currentPage, setCurrentPage }: BottomNavigationProps
                                             : 'text-gray-500 hover:text-blue-600'
                                     }`}
                                 >
-                                    {isActive && (
-                                        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-blue-600 rounded-full"></div>
-                                    )}
                                     <div className={`transition-all duration-200 ${
-                                        isActive ? 'scale-110 -translate-y-0.5' : ''
+                                        isActive ? 'scale-110' : ''
                                     }`}>
                                         {item.icon}
                                     </div>
