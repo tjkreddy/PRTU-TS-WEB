@@ -39,7 +39,7 @@ export const mockResources: Resource[] = [
     { id: 3, title: 'RTI Application Form', description: 'Standard format for filing a Right to Information (RTI) application.', category: 'RTI', url: samplePdfUrl },
     { id: 4, title: 'Casual Leave Application Form', description: 'Downloadable form for applying for casual leave.', category: 'Leave Rules', url: samplePdfUrl },
     { id: 5, title: 'Medical Leave Guidelines & Form', description: 'Official guidelines and application form for medical leave.', category: 'Leave Rules', url: samplePdfUrl },
-    { id: 6, title: 'PRTU Membership Application', description: 'Form to apply for or renew membership with PRTU Telangana.', category: 'Union Forms', url: samplePdfUrl },
+    { id: 6, title: 'PRTU Membership Application', description: 'Form to apply for or renew membership with PRTU TS.', category: 'Union Forms', url: samplePdfUrl },
 ];
 
 export const mockLeaders: Leader[] = [

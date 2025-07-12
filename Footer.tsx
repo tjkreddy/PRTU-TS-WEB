@@ -17,7 +17,7 @@ const Footer = ({ setCurrentPage }: FooterProps) => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                     <div>
-                        <h3 className="font-bold text-lg mb-4">PRTU Telangana</h3>
+                        <h3 className="font-bold text-lg mb-4">PRTU TS</h3>
                         <p className="text-sm text-blue-200">Progressive Recognized Teachers Union, committed to the welfare and rights of teachers across Telangana.</p>
                     </div>
                     <div>
@@ -77,7 +77,7 @@ const Footer = ({ setCurrentPage }: FooterProps) => {
                     </div>
                 </div>
                 <div className="mt-8 border-t border-blue-800 pt-8 text-center text-sm text-blue-300">
-                    <p>&copy; {new Date().getFullYear()} PRTU Telangana. All Rights Reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} PRTU TS. All Rights Reserved.</p>
                 </div>
             </div>
         </footer>

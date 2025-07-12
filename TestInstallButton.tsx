@@ -33,7 +33,7 @@ const TestInstallButton: React.FC = () => {
     } else {
       // Show browser-specific instructions
       if (isChrome || isEdge) {
-        alert('To install this app:\n1. Click the three dots menu (⋮) in your browser\n2. Select "Install PRTU Telangana..." or look for the install icon in the address bar\n3. Click "Install"');
+        alert('To install this app:\n1. Click the three dots menu (⋮) in your browser\n2. Select "Install PRTU TS..." or look for the install icon in the address bar\n3. Click "Install"');
       } else if (isFirefox) {
         alert('Firefox supports PWAs! Look for the install icon in the address bar or add this page to your home screen from the menu.');
       } else {

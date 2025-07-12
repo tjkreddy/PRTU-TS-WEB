@@ -265,7 +265,7 @@ const MemberPortal = () => {
                             About Member Verification
                         </h3>
                         <div className="text-blue-800 space-y-2">
-                            <p>• Enter your Treasury ID or Phone Number to verify your membership with PRTU Telangana.</p>
+                            <p>• Enter your Treasury ID or Phone Number to verify your membership with PRTU TS.</p>
                             <p>• This portal confirms your membership status and displays your registered details.</p>
                             <p>• Your information includes personal details, nominees, and institutional affiliation.</p>
                             <p>• If you encounter any issues or need to update your information, please contact the union office.</p>

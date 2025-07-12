@@ -19,9 +19,9 @@ export default defineConfig(({ mode }) => {
           registerType: 'autoUpdate',
           includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
           manifest: {
-            name: 'PRTU Telangana Live Portal',
-            short_name: 'PRTU Telangana',
-            description: 'Official portal for PRTU Telangana - Stay updated with news, events, and resources',
+            name: 'PRTU TS Live Portal',
+            short_name: 'PRTU TS',
+            description: 'Official portal for PRTU TS - Stay updated with news, events, and resources',
             theme_color: '#1e40af',
             background_color: '#ffffff',
             display: 'standalone',

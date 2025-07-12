@@ -76,7 +76,7 @@ const DevelopersPage = () => {
                     </h1>
                     <div className="w-24 h-1 bg-orange-500 mx-auto mb-6"></div>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                        The talented team behind the PRTU Telangana portal, dedicated to delivering 
+                        The talented team behind the PRTU TS portal, dedicated to delivering 
                         exceptional digital solutions for public administration.
                     </p>
                 </div>

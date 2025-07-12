@@ -7,7 +7,7 @@ const AboutPage = () => {
                 {/* Header Section */}
                 <div className="text-center mb-12">
                     <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-4">
-                        About PRTU Telangana
+                        About PRTU TS
                     </h1>
                     <div className="w-24 h-1 bg-orange-500 mx-auto mb-6"></div>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -21,7 +21,7 @@ const AboutPage = () => {
                     <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
                         <h2 className="text-3xl font-bold text-blue-900 mb-6">Our Mission</h2>
                         <p className="text-gray-700 leading-relaxed mb-4">
-                            PRTU (Personnel, Reforms, Training and Utilities) Telangana is dedicated to modernizing 
+                            PRTU (Personnel, Reforms, Training and Utilities) TS is dedicated to modernizing 
                             public administration and enhancing the efficiency of government services across the state. 
                             We work towards creating a transparent, accountable, and citizen-centric governance framework.
                         </p>

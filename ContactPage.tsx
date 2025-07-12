@@ -37,7 +37,7 @@ const ContactPage = () => {
                                     <dt className="sr-only">Postal address</dt>
                                     <dd className="flex">
                                         <BuildingOffice2Icon className="flex-shrink-0 h-6 w-6 text-blue-300" aria-hidden="true" />
-                                        <span className="ml-3">PRTU State Office, Hyderabad, Telangana, India</span>
+                                        <span className="ml-3">PRTU State Office, Hyderabad, TS, India</span>
                                     </dd>
                                 </div>
                                 <div className="mt-6">
@@ -99,7 +99,7 @@ const ContactPage = () => {
                     allowFullScreen={false} 
                     loading="lazy" 
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="PRTU Telangana State Office Location">
+                    title="PRTU TS State Office Location">
 
                   </iframe>
             </div>
